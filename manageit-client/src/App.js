@@ -5,6 +5,7 @@ import store from './store';
 import Dashboard from './components/Dashboard';
 import Header from './components/Layout/Header';
 import AddProject from './components/Project/AddProject';
+import UpdateProject from './components/Project/UpdateProject';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <div className="App">
           <Header />
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/addproject" component={AddProject} />
+          <Route exact path="/add-project" component={AddProject} />
+          <Route exact path="/update-project/:id" component={UpdateProject} />
         </div>
       </Router>
     </Provider>
