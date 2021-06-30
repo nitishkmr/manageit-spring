@@ -2,8 +2,13 @@ import axios from 'axios';
 import { GET_ERRORS, GET_PROJECT, GET_PROJECTS } from './types';
 
 export const createProject = (project, history) => async dispatch => {
+  // for creating and editing existing projects
   try {
     const res = await axios.post('http://localhost:8080/api/project', project);
+    dispatch({
+      type: GET_ERRORS,
+      payload: {},
+    });
     history.push('/dashboard');
   } catch (err) {
     dispatch({
@@ -22,9 +27,13 @@ export const getProjects = () => async dispatch => {
 };
 
 export const getProject = (id, history) => async dispatch => {
-  const res = await axios.get(`http://localhost:8080/api/project/${id}`);
-  dispatch({
-    type: GET_PROJECT,
-    payload: res.data,
-  });
+  try {
+    const res = await axios.get(`http://localhost:8080/api/project/${id}`);
+    dispatch({
+      type: GET_PROJECT,
+      payload: res.data,
+    });
+  } catch (err) {
+    history.push('/dashboard');
+  }
 };
