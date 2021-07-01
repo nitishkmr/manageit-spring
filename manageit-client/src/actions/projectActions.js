@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS, GET_PROJECT, GET_PROJECTS } from './types';
+import { DELETE_PROJECT, GET_ERRORS, GET_PROJECT, GET_PROJECTS } from './types';
 
 export const createProject = (project, history) => async dispatch => {
   // for creating and editing existing projects
@@ -19,7 +19,7 @@ export const createProject = (project, history) => async dispatch => {
 };
 
 export const getProjects = () => async dispatch => {
-  const res = await axios.get('http://localhost:8080/api/project/all');
+  const res = await axios.get('/api/project/all');
   dispatch({
     type: GET_PROJECTS,
     payload: res.data,
@@ -28,12 +28,22 @@ export const getProjects = () => async dispatch => {
 
 export const getProject = (id, history) => async dispatch => {
   try {
-    const res = await axios.get(`http://localhost:8080/api/project/${id}`);
+    const res = await axios.get(`/api/project/${id}`);
     dispatch({
       type: GET_PROJECT,
       payload: res.data,
     });
   } catch (err) {
     history.push('/dashboard');
+  }
+};
+
+export const deleteProject = (id, history) => async dispatch => {
+  if (window.confirm('Are you sure you want to delete the project?')) {
+    await axios.delete(`/api/project/${id}`);
+    dispatch({
+      type: DELETE_PROJECT,
+      payload: id,
+    });
   }
 };
