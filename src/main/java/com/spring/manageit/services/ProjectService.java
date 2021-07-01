@@ -3,8 +3,10 @@ package com.spring.manageit.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.manageit.domain.Backlog;
 import com.spring.manageit.domain.Project;
 import com.spring.manageit.exceptions.ProjectIdException;
+import com.spring.manageit.repositories.BacklogRepository;
 import com.spring.manageit.repositories.ProjectRepository;
 
 @Service
@@ -13,12 +15,28 @@ public class ProjectService {
 	@Autowired
 	private ProjectRepository projectRepository;
 	
+	@Autowired
+	private BacklogRepository backlogRepository;
+	
 	public Project saveOrUpdateProject(Project project) {
+		String projectIdentifier = project.getProjectIdentifier().toUpperCase();
 		try {
-			project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+			project.setProjectIdentifier(projectIdentifier);
+			
+			if(project.getId() == null) {
+				Backlog backlog = new Backlog();
+				project.setBacklog(backlog);
+	            backlog.setProject(project);
+				backlog.setProjectIdentifier(projectIdentifier);
+			}else {
+//				System.out.println("\n+++++"+projectIdentifier);
+//				System.out.println("\n+++++"+backlogRepository.findByProjectIdentifier(projectIdentifier));
+				project.setBacklog(backlogRepository.findByProjectIdentifier(projectIdentifier));
+			}
+			
 			return projectRepository.save(project);			
 		} catch (Exception e) {
-			throw new ProjectIdException("Project ID '" + project.getProjectIdentifier().toUpperCase()+"' already exist");
+			throw new ProjectIdException("Project ID '" + projectIdentifier+"' already exist");
 		}	
 	}
 	
