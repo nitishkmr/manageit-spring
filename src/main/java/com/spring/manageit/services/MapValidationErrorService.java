@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 public class MapValidationErrorService {
 	
 	public ResponseEntity<?> mapValidationService(BindingResult result){
+//		System.out.println("\n"+result);
 		if(result.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>();
 			for(FieldError error: result.getFieldErrors()) {
