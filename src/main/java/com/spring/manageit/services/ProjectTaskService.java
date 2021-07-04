@@ -60,13 +60,34 @@ public class ProjectTaskService {
 		
 	}
 
-	public Iterable <ProjectTask> findBacklogById(String id) {
+	public Iterable <ProjectTask> findBacklogById(String backlog_id) {
 		
-		Project project = projectRepository.findByProjectIdentifier(id);
+		Project project = projectRepository.findByProjectIdentifier(backlog_id);
 		if(project == null) {
-			throw new ProjectNotFoundException("Project with ID: '" + id + "' does not exist");
+			throw new ProjectNotFoundException("Project with ID: '" + backlog_id + "' does not exist");
+		}
+		return projectTaskRepository.findByProjectIdentifierOrderByPriority(backlog_id);
+	}
+	
+	public ProjectTask findPTByProjectSequence(String backlog_id, String pt_id) {
+		
+		// the backlog should exist
+		Backlog backlog = backlogRepository.findByProjectIdentifier(backlog_id);
+		if(backlog == null) {
+			throw new ProjectNotFoundException("Project with ID: '" + backlog_id + "' does not exist");
 		}
 		
-		return projectTaskRepository.findByProjectIdentifierOrderByPriority(id);
+		// the task should exist
+		ProjectTask projectTask = projectTaskRepository.findByProjectSequence(pt_id);
+		if(projectTask == null) {
+			throw new ProjectNotFoundException("Project Task: '" + pt_id + "' not found");
+		}
+		
+		// the backlog/task should correspond to the right project
+		if(!projectTask.getProjectIdentifier().equals(backlog_id)) {
+			throw new ProjectNotFoundException("Project Task '"+pt_id+"' does not exist in the project: '"+backlog_id+"'");
+		}
+		
+		return projectTask;
 	}
 }
