@@ -4,7 +4,7 @@ import { DELETE_PROJECT, GET_ERRORS, GET_PROJECT, GET_PROJECTS } from './types';
 export const createProject = (project, history) => async dispatch => {
   // for creating and editing existing projects
   try {
-    const res = await axios.post('http://localhost:8080/api/project', project);
+    await axios.post('/api/project', project);
     dispatch({
       type: GET_ERRORS,
       payload: {},
