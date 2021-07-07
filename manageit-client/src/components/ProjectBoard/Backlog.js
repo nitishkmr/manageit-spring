@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import ProjectTasks from './ProjectTasks/ProjectTasks';
+import ProjectTask from './ProjectTasks/ProjectTask';
 
 class Backlog extends Component {
   render() {
+    const { project_tasks } = this.props;
+    const tasks = project_tasks.map(project_task => (
+      <ProjectTask key={project_tasks.id} project_task={project_task} />
+    ));
     return (
       <div className="container">
         <div className="row">
@@ -13,7 +17,7 @@ class Backlog extends Component {
               </div>
             </div>
             {/* <!-- PROJECT TASK STARTS HERE --> */}
-            <ProjectTasks />
+            {tasks}
           </div>
 
           <div className="col-md-4">
