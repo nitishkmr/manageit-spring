@@ -1,4 +1,7 @@
-html {
+body {
+  background-color: #fffdfd;
+  background-image: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -9,23 +12,60 @@ img {
 .navbar {
   background-color: #e3f2fd;
 }
+
 .fa.fa-edit {
   color: #18a2b9;
 }
 
-.list-group-item.delete:hover {
-  cursor: -webkit-grab;
-  background-color: pink;
+.card {
+  border: solid 1px;
+}
+
+.card-body {
+  background-color: #ffffff;
+  /* background-image: url('https://www.transparenttextures.com/patterns/checkered-pattern.png'); */
+  /* border: solid 1px grey; */
+}
+
+.list-group-item.update {
+  background-color: rgb(52, 58, 64);
+  color: #e3f2fd;
+  text-decoration: none;
+  margin: 2px;
 }
 
 .list-group-item.update:hover {
-  cursor: -webkit-grab;
+  cursor: pointer;
   background-color: gainsboro;
+  color: rgb(52, 58, 64);
+  text-decoration: none;
+  border: solid 1px;
+}
+
+.list-group-item.board {
+  background-color: rgb(52, 58, 64);
+  color: #e3f2fd;
+  text-decoration: none;
+  margin: 2px;
 }
 
 .list-group-item.board:hover {
-  cursor: -webkit-grab;
+  cursor: pointer;
   background-color: gainsboro;
+  color: rgb(52, 58, 64);
+  text-decoration: none;
+  border: solid 1px;
+}
+
+.list-group-item.delete {
+  cursor: pointer;
+  margin: 2px;
+  border: solid 1px;
+}
+
+.list-group-item.delete:hover {
+  cursor: pointer;
+  background-color: pink;
 }
 
 .fa.fa-minus-circle {

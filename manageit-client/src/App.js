@@ -14,7 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div className="App">
+        <div>
           <Header />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/add-project" component={AddProject} />

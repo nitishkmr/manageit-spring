@@ -13,7 +13,7 @@ class ProjectItem extends Component {
     const { project } = this.props;
     return (
       <div className="container">
-        <div className="card card-body bg-light mb-3">
+        <div className="card card-body mb-3 border-dark">
           <div className="row">
             <div className="col-2">
               <span className="mx-auto">{project.projectIdentifier}</span>
@@ -24,21 +24,21 @@ class ProjectItem extends Component {
             </div>
             <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">
-                <Link to={`/project-board/${project.projectIdentifier}`}>
+                <Link style={{ textDecoration: 'none' }} to={`/project-board/${project.projectIdentifier}`}>
                   <li className="list-group-item board">
-                    <i className="fa fa-flag-checkered pr-1"> Project Board </i>
+                    <i className="fa fa-flag-checkered pr-1" /> Project Board
                   </li>
                 </Link>
-                <Link to={`/update-project/${project.projectIdentifier}`}>
+                <Link style={{ textDecoration: 'none' }} to={`/update-project/${project.projectIdentifier}`}>
                   <li className="list-group-item update">
-                    <i className="fa fa-edit pr-1"> Update Project Info</i>
+                    <i className="fa fa-edit pr-1" /> Update Project Info
                   </li>
                 </Link>
                 <li
                   className="list-group-item delete"
                   onClick={this.onDeleteClick.bind(this, project.projectIdentifier)}
                 >
-                  <i className="fa fa-minus-circle pr-1"> Delete Project</i>
+                  <i className="fa fa-minus-circle pr-1" /> <font color="red"> Delete Project</font>
                 </li>
               </ul>
             </div>

@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
-          <a className="navbar-brand" href="Dashboard.html">
-            Personal Project Management Tool
+          <a className="navbar-brand" href="/dashboard">
+            ManageIt
           </a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
             <span className="navbar-toggler-icon" />
