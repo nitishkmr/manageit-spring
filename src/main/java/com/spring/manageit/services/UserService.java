@@ -26,6 +26,8 @@ public class UserService {
 			newUser.setUsername(newUser.getUsername());
 			
 			// Password and password2 should match
+			
+			newUser.setConfirmPassword("");
 			return userRepository.save(newUser);
 			
 		} catch (Exception e) {
