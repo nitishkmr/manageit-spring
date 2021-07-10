@@ -5,9 +5,11 @@ import org.springframework.stereotype.Service;
 
 import com.spring.manageit.domain.Backlog;
 import com.spring.manageit.domain.Project;
+import com.spring.manageit.domain.User;
 import com.spring.manageit.exceptions.ProjectIdException;
 import com.spring.manageit.repositories.BacklogRepository;
 import com.spring.manageit.repositories.ProjectRepository;
+import com.spring.manageit.repositories.UserRepository;
 
 @Service
 public class ProjectService {
@@ -18,9 +20,18 @@ public class ProjectService {
 	@Autowired
 	private BacklogRepository backlogRepository;
 	
-	public Project saveOrUpdateProject(Project project) {
+	@Autowired
+	private UserRepository userRepository;
+	
+	public Project saveOrUpdateProject(Project project, String username) {
 		String projectIdentifier = project.getProjectIdentifier().toUpperCase();
 		try {
+			
+			User user = userRepository.findByUsername(username);
+			
+			project.setUser(user);
+			project.setProjectLeader(username);
+			
 			project.setProjectIdentifier(projectIdentifier);
 			
 			if(project.getId() == null) {
