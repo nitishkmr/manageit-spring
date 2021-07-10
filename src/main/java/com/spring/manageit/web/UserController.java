@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +48,7 @@ public class UserController {
 		// Validate the password match
 		userValidator.validate(user, result);
 		
-		
+
 		ResponseEntity<?> errorMap =  mapValidationErrorService.mapValidationService(result);
 		if(errorMap != null) return errorMap;
 		
