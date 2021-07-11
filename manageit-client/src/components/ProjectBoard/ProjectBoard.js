@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Backlog from './Backlog';
 import { connect } from 'react-redux';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import { getBacklog } from '../../actions/backlogActions';
 
 class ProjectBoard extends Component {
