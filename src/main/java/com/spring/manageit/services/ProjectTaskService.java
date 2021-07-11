@@ -1,7 +1,5 @@
 package com.spring.manageit.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +23,14 @@ public class ProjectTaskService {
 	@Autowired
 	private ProjectRepository projectRepository;
 	
-	public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask) {
+	@Autowired
+	private ProjectService projectService;
+	
+	public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask, String username) {
 		
 		try {
 			// PTs to be added to a specific project, project != null and BL exists
-			Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier);
+			Backlog backlog = projectService.findProjectByIdentifier(projectIdentifier, username).getBacklog();
 			
 			// set the BL to PT
 			projectTask.setBacklog(backlog);
@@ -57,17 +58,15 @@ public class ProjectTaskService {
 			return projectTaskRepository.save(projectTask);
 			
 		} catch (Exception e) {
-			throw new ProjectNotFoundException("Project not Found");
+			throw new ProjectNotFoundException("Project not found in your account");
 		}
 		
 	}
 
-	public Iterable <ProjectTask> findBacklogById(String backlog_id) {
+	public Iterable <ProjectTask> findBacklogById(String backlog_id, String username) {
+
+		projectService.findProjectByIdentifier(backlog_id, username);
 		
-		Project project = projectRepository.findByProjectIdentifier(backlog_id);
-		if(project == null) {
-			throw new ProjectNotFoundException("Project with ID: '" + backlog_id + "' does not exist");
-		}
 		return projectTaskRepository.findByProjectIdentifierOrderByPriority(backlog_id);	
 	}
 	
