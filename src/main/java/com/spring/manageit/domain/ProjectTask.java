@@ -29,7 +29,7 @@ public class ProjectTask {
 	
 	@NotBlank(message = "Please include a project summary")
 	private String summary;
-	private String acceptanceCritera;
+	private String acceptanceCriteria;
 	private String status;
 	private Integer priority;
 	private Date dueDate;
@@ -84,12 +84,12 @@ public class ProjectTask {
 		this.summary = summary;
 	}
 
-	public String getAcceptanceCritera() {
-		return acceptanceCritera;
+	public String getacceptanceCriteria() {
+		return acceptanceCriteria;
 	}
 
-	public void setAcceptanceCritera(String acceptanceCritera) {
-		this.acceptanceCritera = acceptanceCritera;
+	public void setacceptanceCriteria(String acceptanceCriteria) {
+		this.acceptanceCriteria = acceptanceCriteria;
 	}
 
 	public String getStatus() {
@@ -151,7 +151,7 @@ public class ProjectTask {
 	@Override
 	public String toString() {
 		return "ProjectTask [id=" + id + ", projectSequence=" + projectSequence + ", summary=" + summary
-				+ ", acceptanceCritera=" + acceptanceCritera + ", status=" + status + ", priority=" + priority
+				+ ", acceptanceCriteria=" + acceptanceCriteria + ", status=" + status + ", priority=" + priority
 				+ ", dueDate=" + dueDate + ", projectIdentifier=" + projectIdentifier + ", created_At=" + created_At
 				+ ", updated_At=" + updated_At + "]";
 	}

@@ -11,9 +11,14 @@ class Landing extends Component {
               <div className="col-md-12 text-center">
                 <h1 className="display-2">ManageIt</h1>
                 <h3 className="mb-4">Personal Project Management Tool</h3>
-                <p className="lead">Create your account or Login to start managing your projects</p>
-                <p>Use email: test@test.com password: test123 for testing the app</p>
                 <hr />
+                <p className="lead">Create your account or Login to start managing your projects</p>
+                <p>
+                  Use email: <span style={{ color: 'rgb(220,53,69)' }}>test@test.com</span> password:{' '}
+                  <span style={{ color: 'rgb(220,53,69)' }}>test123 </span>
+                  for testing the app
+                </p>
+
                 <Link to="/register" className="btn btn-lg btn-danger mr-2">
                   Sign Up
                 </Link>
