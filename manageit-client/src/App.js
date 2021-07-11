@@ -12,8 +12,20 @@ import UpdateProjectTask from './components/ProjectBoard/ProjectTasks/UpdateProj
 import Landing from './components/Layout/Landing';
 import Register from './components/UserManagement/Register';
 import Login from './components/UserManagement/Login';
+import jwt_decode from 'jwt-decode';
+import setJwtToken from './securityUtils/setJwtToken';
+import { SET_CURRENT_USER } from './actions/types';
 
 function App() {
+  const jwtToken = localStorage.getItem('jwtToken');
+  if (jwtToken) {
+    setJwtToken(jwtToken);
+    const decoded = jwt_decode(jwtToken);
+    store.dispatch({
+      type: SET_CURRENT_USER,
+      payload: decoded,
+    });
+  }
   return (
     <Provider store={store}>
       <Router>
