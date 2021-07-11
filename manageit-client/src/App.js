@@ -15,6 +15,7 @@ import Login from './components/UserManagement/Login';
 import jwt_decode from 'jwt-decode';
 import setJwtToken from './securityUtils/setJwtToken';
 import { SET_CURRENT_USER } from './actions/types';
+import { logout } from './actions/securityActions';
 
 function App() {
   const jwtToken = localStorage.getItem('jwtToken');
@@ -25,6 +26,12 @@ function App() {
       type: SET_CURRENT_USER,
       payload: decoded,
     });
+
+    const currentTime = Date.now() / 1000;
+    if (decoded.exp < currentTime) {
+      store.dispatch(logout());
+      window.location.href = '/';
+    }
   }
   return (
     <Provider store={store}>

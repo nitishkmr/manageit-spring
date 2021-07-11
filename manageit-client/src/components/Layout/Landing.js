@@ -12,6 +12,7 @@ class Landing extends Component {
                 <h1 className="display-2">ManageIt</h1>
                 <h3 className="mb-4">Personal Project Management Tool</h3>
                 <p className="lead">Create your account or Login to start managing your projects</p>
+                <p>Use email: test@test.com password: test123 for testing the app</p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-danger mr-2">
                   Sign Up
