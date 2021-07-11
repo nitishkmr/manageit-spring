@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import Dashboard from './components/Dashboard';
@@ -16,6 +16,7 @@ import jwt_decode from 'jwt-decode';
 import setJwtToken from './securityUtils/setJwtToken';
 import { SET_CURRENT_USER } from './actions/types';
 import { logout } from './actions/securityActions';
+import SecuredRoute from './securityUtils/SecureRoute';
 
 function App() {
   const jwtToken = localStorage.getItem('jwtToken');
@@ -44,12 +45,18 @@ function App() {
           <Route exact path="/login" component={Login} />
 
           {/* Private Routes */}
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/add-project" component={AddProject} />
-          <Route exact path="/update-project/:id" component={UpdateProject} />
-          <Route exact path="/project-board/:id" component={ProjectBoard} />
-          <Route exact path="/add-project-task/:id" component={AddProjectTask} />
-          <Route exact path="/update-project-task/:backlog_id/:pt_id" component={UpdateProjectTask} />
+          <Switch>
+            <SecuredRoute exact path="/dashboard" component={Dashboard} />
+            <SecuredRoute exact path="/add-project" component={AddProject} />
+            <SecuredRoute exact path="/update-project/:id" component={UpdateProject} />
+            <SecuredRoute exact path="/project-board/:id" component={ProjectBoard} />
+            <SecuredRoute exact path="/add-project-task/:id" component={AddProjectTask} />
+            <SecuredRoute
+              exact
+              path="/update-project-task/:backlog_id/:pt_id"
+              component={UpdateProjectTask}
+            />
+          </Switch>
         </div>
       </Router>
     </Provider>

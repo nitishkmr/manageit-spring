@@ -1,11 +1,11 @@
-import { DELETE_PROJECT_TASK, GET_BACKLOG, GET_PROJECT, GET_PROJECT_TASK } from '../actions/types';
+import { DELETE_PROJECT_TASK, GET_BACKLOG, GET_PROJECT_TASK } from '../actions/types';
 
 const initialState = {
   project_tasks: [],
   project_task: {},
 };
 
-export default function (state = initialState, action) {
+function backlogReducer(state = initialState, action) {
   switch (action.type) {
     case GET_BACKLOG:
       return {
@@ -31,3 +31,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default backlogReducer;
