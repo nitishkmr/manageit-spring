@@ -13,6 +13,15 @@ img {
   background-color: #e3f2fd;
 }
 
+#carouselExampleIndicators {
+  margin: 0 auto;
+}
+
+.carousel.slide {
+  border: solid 1px;
+  width: 500px;
+}
+
 .fa.fa-edit {
   color: #18a2b9;
 }

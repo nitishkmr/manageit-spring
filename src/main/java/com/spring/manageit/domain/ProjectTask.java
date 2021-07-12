@@ -32,6 +32,8 @@ public class ProjectTask {
 	private String acceptanceCriteria;
 	private String status;
 	private Integer priority;
+	
+	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date dueDate;
 	
 	// ManyToOne with Backlog

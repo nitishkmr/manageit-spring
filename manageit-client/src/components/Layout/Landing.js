@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Carousel from './Carousel';
 
 class Landing extends Component {
   componentDidMount() {
@@ -20,13 +21,12 @@ class Landing extends Component {
                 <h1 className="display-2">ManageIt</h1>
                 <h3 className="mb-4">Personal Project Management Tool</h3>
                 <hr />
-                <p className="lead">Create your account or Login to start managing your projects</p>
+                <Carousel />
                 <p>
                   Use email: <span style={{ color: 'rgb(220,53,69)' }}>test@test.com</span> password:{' '}
                   <span style={{ color: 'rgb(220,53,69)' }}>test123 </span>
                   for testing the app
                 </p>
-
                 <Link to="/register" className="btn btn-lg btn-danger mr-2">
                   Sign Up
                 </Link>

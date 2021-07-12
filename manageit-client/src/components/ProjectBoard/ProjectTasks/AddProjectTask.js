@@ -12,7 +12,7 @@ export class AddProjectTask extends Component {
 
     this.state = {
       summary: '',
-      acceptanceCritera: '',
+      acceptanceCriteria: '',
       status: '',
       priority: 0,
       dueDate: '',
@@ -38,11 +38,12 @@ export class AddProjectTask extends Component {
     e.preventDefault();
     const newTask = {
       summary: this.state.summary,
-      acceptanceCritera: this.state.acceptanceCritera,
+      acceptanceCriteria: this.state.acceptanceCriteria,
       status: this.state.status,
       priority: this.state.priority,
       dueDate: this.state.dueDate,
     };
+    console.log(newTask);
     this.props.addProjectTask(this.state.projectIdentifier, newTask, this.props.history);
   }
 
@@ -58,7 +59,7 @@ export class AddProjectTask extends Component {
                 Back to Project Board
               </Link>
               <h4 className="display-4 text-center">Add Project Task</h4>
-              <p className="lead text-center">Project Name + Project Code</p>
+              <p className="lead text-center">Project ID: {this.state.projectIdentifier}</p>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
@@ -73,6 +74,7 @@ export class AddProjectTask extends Component {
                 </div>
                 <div className="form-group">
                   <textarea
+                    style={{ minHeight: '200px' }}
                     className="form-control form-control-lg"
                     placeholder="Acceptance Criteria"
                     name="acceptanceCriteria"
@@ -118,7 +120,7 @@ export class AddProjectTask extends Component {
                   </select>
                 </div>
 
-                <input type="submit" className="btn btn-primary btn-block mt-4" />
+                <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
           </div>

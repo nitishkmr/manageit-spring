@@ -97,7 +97,7 @@ class UpdateProjectTasks extends Component {
               </Link>
               <h4 className="display-4 text-center">Update Project Task</h4>
               <p className="lead text-center">
-                Project Name: {this.state.projectIdentifier} | Project Code: {this.state.projectSequence}
+                Project ID: {this.state.projectIdentifier} | Project Task Code: {this.state.projectSequence}
               </p>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
@@ -113,6 +113,7 @@ class UpdateProjectTasks extends Component {
                 </div>
                 <div className="form-group">
                   <textarea
+                    style={{ minHeight: '200px' }}
                     className="form-control form-control-lg"
                     placeholder="Acceptance Criteria"
                     name="acceptanceCriteria"
@@ -158,7 +159,7 @@ class UpdateProjectTasks extends Component {
                   </select>
                 </div>
 
-                <input type="submit" className="btn btn-primary btn-block mt-4" />
+                <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
           </div>
